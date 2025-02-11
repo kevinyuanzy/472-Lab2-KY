@@ -6,7 +6,7 @@ const map = new mapboxgl.Map({
     container: 'Lab2Map', // map container ID in the index.html file.
     style: 'mapbox://styles/kevinyuanzy/cm6ztbpqc003s01qwcvdrf6ft', // style URL from created MapBox style.
     center: [-79.391820, 43.660168], // starting position [lng, lat]. I used the starting location centered approximately at Queen's Park, Toronto. 
-    zoom: 13.5, // starting zoom level. I use the zoom level that can display the whole U of T campus.
+    zoom: 14, // starting zoom level. I use the zoom level that can display the whole U of T campus.
 });
 
 //Use "map.on" event listener to add features to the webmap. This is an important step!
@@ -74,7 +74,7 @@ map.on('load', () => {
     legend.appendChild(item);
     });
 
-    // Create a popup, so the information about places will appear when mouse hovers on features. Codes are from https://docs.mapbox.com/mapbox-gl-js/example/popup-on-hover/
+    // Create a popup, so station names will appear when mouse hovers on features. Codes are from https://docs.mapbox.com/mapbox-gl-js/example/popup-on-hover/
     const popup = new mapboxgl.Popup({
         closeButton: false,
         closeOnClick: false
@@ -102,9 +102,28 @@ map.on('load', () => {
         popup.setLngLat(coordinates).setHTML(description).addTo(map);
     });
 
+    // Change the cursor back to a pointer when it leaves the stations layer.
     map.on('mouseleave', 'stations-points', () => {
         map.getCanvas().style.cursor = '';
         popup.remove();
+    });
+
+    //// Create a popup, so park names will appear when mouse clicks on features. Codes are from https://docs.mapbox.com/mapbox-gl-js/example/polygon-popup-on-click/
+    map.on('click', 'parks-polygons', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(e.features[0].properties.Name)
+            .addTo(map);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the parks layer.
+    map.on('mouseenter', 'parks-polygons', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change the cursor back to a pointer when it leaves the parks layer.
+    map.on('mouseleave', 'parks-polygons', () => {
+        map.getCanvas().style.cursor = '';
     });
 });
 
