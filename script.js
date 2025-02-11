@@ -11,25 +11,25 @@ const map = new mapboxgl.Map({
 
 //Add "on load" event listener
 map.on('load', () => {
-    //Add the .geojson file from GitHub repository
+    //Add the ParksAroundUofT.geojson file from GitHub repository. This file, which I created during the lab 1, represents parks around UofT as polygons. 
     map.addSource('ParksAroundUofT', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/kevinyuanzy/472-Lab2-KY/refs/heads/main/ParksAroundUofT.geojson' // The URL to my GeoJson polygon.
     });
     
-    // Add layer style to the map to represent polygons
+    // Add layer style to the map to represent park polygons.
     map.addLayer({
         'id': 'parks-polygons',
         'type': 'fill',
         'source': 'ParksAroundUofT',
         'paint': {
             'fill-color': '#00b33c', 
-            'fill-opacity': 0.4,
+            'fill-opacity': 0.5,
             'fill-outline-color': 'black'
         }
     });
 
-
+    //Add the MapBox Tileset from MapBox. This file represents Subway Stations around UofT as points. 
     
     
 
