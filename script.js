@@ -80,13 +80,13 @@ map.on('load', () => {
         closeOnClick: false
     });
 
-    map.on('mouseenter', 'parks-polygons', (e) => {
+    map.on('mouseenter', 'stations-points', (e) => {
         // Change the cursor style as a UI indicator.
         map.getCanvas().style.cursor = 'pointer';
 
         // Copy coordinates array.
         const coordinates = e.features[0].geometry.coordinates.slice();
-        const description = e.features[0].properties.Name;
+        const description = e.features[0].properties.station;
 
         // Ensure that if the map is zoomed out such that multiple
         // copies of the feature are visible, the popup appears
@@ -99,10 +99,10 @@ map.on('load', () => {
 
         // Populate the popup and set its coordinates
         // based on the feature found.
-        popup.setLngLat(coordinates).setHTML(description).addTo(Lab2Map);
+        popup.setLngLat(coordinates).setHTML(description).addTo(map);
     });
 
-    map.on('mouseleave', 'parks-polygons', () => {
+    map.on('mouseleave', 'stations-points', () => {
         map.getCanvas().style.cursor = '';
         popup.remove();
     });
