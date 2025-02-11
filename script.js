@@ -32,7 +32,7 @@ map.on('load', () => {
     //Add the MapBox Tileset from MapBox. This file represents Subway Stations around UofT as points. 
     map.addSource('TTCStations', {
         'type': 'vector',
-        'url': 'mapbox://kevinyuanzy.d14yokfo' // Add MapBox tileset ID
+        'url': 'mapbox://kevinyuanzy.5b0watzh' // Add MapBox tileset ID
     });
 
     //Add layer style to the map to represent subway stations points.
@@ -44,7 +44,7 @@ map.on('load', () => {
             'circle-color': '#ff1a1a',
             'circle-radius': 5 
         },
-        'source-layer': 'TTCSubway-11dp0f' // Tileset NAME (diff to ID) from mapbox tileset page
+        'source-layer': 'ttc-8uf5gp' // Tileset NAME (diff to ID) from mapbox tileset page
     });
 
     //Add layer style to the legend
