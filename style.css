@@ -1,3 +1,4 @@
+/**Set up map container*/
 .map-container {
     position: absolute;
     top: 0;
@@ -5,15 +6,14 @@
     width: 100%;
 }
 
+/**Set up text margin*/
 h2,
 p {
     margin: 10px;
   }
 
-/**
-* Set rules for how the map overlays
-* (information box and legend) will be displayed
-* on the page. These codes are from mapbox website.*/
+/**Set rules for how the map overlays, with information box and legend) will be displayed on the page. These codes are from mapbox website.
+Link: https://docs.mapbox.com/help/tutorials/choropleth-studio-gl-pt-2/ */
 .map-overlay {
     position: absolute;
     bottom: 0;
@@ -37,9 +37,9 @@ p {
     padding: 10px;
     box-shadow: 0 1px 2px rgba(0 0 0 0.1);
     line-height: 18px;
-    height: 80px;
+    height: 40px;
     margin-bottom: 40px;
-    width: 100px;
+    width: 160px;
   }
   
   .legend-key {
