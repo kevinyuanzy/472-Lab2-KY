@@ -9,7 +9,7 @@ const map = new mapboxgl.Map({
     zoom: 13.5, // starting zoom level. I use the zoom level that can display the whole U of T campus.
 });
 
-//Add "on load" event listener
+//Use "map.on" event listener to add features to the webmap. This is an important step!
 map.on('load', () => {
     //Add the ParksAroundUofT.geojson file from GitHub repository. This file, which I created during the lab 1, represents parks around UofT as polygons. 
     map.addSource('ParksAroundUofT', {
@@ -30,7 +30,23 @@ map.on('load', () => {
     });
 
     //Add the MapBox Tileset from MapBox. This file represents Subway Stations around UofT as points. 
-    
+    map.addSource('TTCStations', {
+        'type': 'vector',
+        'url': 'mapbox://kevinyuanzy.d14yokfo' // Add MapBox tileset ID
+    });
+
+    //Add layer style to the map to represent subway stations points.
+    map.addLayer({
+        'id': 'stations-points', 
+        'type': 'circle', 
+        'source': 'TTCStations',
+        'paint': {
+            'circle-color': '#ff1a1a',
+            'circle-radius': 5 
+        },
+        'source-layer': 'TTCSubway-11dp0f' // Tileset NAME (diff to ID) from mapbox tileset page
+    });
+
     
 
 
